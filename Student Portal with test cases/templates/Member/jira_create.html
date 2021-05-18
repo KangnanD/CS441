@@ -1,0 +1,68 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container m-3">
+    <div class="row">
+    <div class="col-md-4">
+        <h3 class="text-center"> Active JIRA tickets</h3>
+        <table class="table table-striped table-bordered table-hover" style="max-height:500px;">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Assignment</th>
+                <th>Status</th>
+                <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% for jira in jira_tickets %}
+            <tr>
+              <td>
+                    {{jira.code}}
+              </td>
+              <td>
+                  <div class="sub header">{{jira.reporter.email}}</div>
+              </td>
+              <td>
+                {{jira.status.name}}
+              </td>
+              <td>
+                <a href="/jira/{{jira.id}}/view" class="btn btn-primary">View</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    <div class="col-md-6 offset-2">
+            <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Create New JIRA ticket</h4>
+                    {% if message %}<h3 class="text-danger text-center">{{message|safe}}</h3>{% endif %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {{ jira_create_form |crispy }}
+                        <div class="form-group">
+                            {% for file in jira.files.all %}
+                             <table>
+                                <tr>
+                                    <td>{{file.name}}</td>
+                                    <td><a class="btn btn-danger file-remove" id="{{file.id}}">remove</a></td>
+                                </tr>
+                            </table>
+                            {% endfor %}
+                        </div>
+                        <div class="clsbox-1" runat="server"  >
+                            <div class="dropzone clsbox" id="mydropzone"></div>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="btn btn-primary btn-block">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+        </div>
+</div>
+{% endblock %}

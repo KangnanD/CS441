@@ -1,0 +1,29 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+<div class="container-fluid mt-2">
+    <div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-4">
+        {% include 'Member/profile_card.html'%}
+    </div>
+      <div class="col-md-9">
+        <div class="row ">
+          {% for c in courses %}
+          <div class="card col-3">
+            <img class="card-img-top" src="{{c.image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><a href="/timeline/{{c.id}}/">{{c.name}}</a></h5>
+              <p class="card-text"><a href="/timeline/{{c.id}}/">{{c.description}}</a></p>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+
+    </div>
+
+</div>
+{% endblock %}

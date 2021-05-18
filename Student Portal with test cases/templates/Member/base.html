@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+     <head>
+          <!-- Required meta tags -->
+        <title>{{title|safe}}</title>
+
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+         <style>
+                p.invalid-feedback {
+                    display: block;
+                }
+                .card-columns {
+                        column-count: 3;
+                 }
+                 .card-deck {
+                        column-count: 3;
+                 }
+         </style>
+        <link rel="stylesheet" href="/static/css/profile.css">
+
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+          <a class="navbar-brand" href="{% url 'index' %}">Member ERS</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="{% url 'index' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Courses
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for c in courses %}
+              <a class="dropdown-item" href="{% url 'Member:timeline' course_id=c.id %}">{{c.name}}</a>
+              <div class="dropdown-divider"></div>
+            {% endfor %}
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'Member:my_timeline' %}">Timeline</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'Member:courses' %}">My Courses</a>
+      </li>
+        {% if member.role == 'TEACHER' %}
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'Member:my_student' %}">My Students</a>
+          </li>
+        {% endif %}
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'Member:online_members' %}">Online </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'Member:jira' %}">JIRA</a>
+      </li>
+
+      {% if member.is_authenticated %}
+        <li class="nav-item"><a  class="nav-link" href="{% url 'Member:jira_create' %}">Create JIRA</a></li>
+      {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'Member:register' %}">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'Member:login' %}">Login</a></li>
+      {% endif %}
+        <li class="nav-item">
+            <a class="nav-link " href="{% url 'Member:about' %}">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="{% url 'Member:guidelines' %}">Guidelines</a>
+        </li>
+    </ul>
+      {% if member.is_authenticated %}
+      <ul class="nav pull-right mr-5">
+        <li>
+            <div class="ui search posts" id="search_posts">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search Posts...">
+                <i class="search icon"></i>
+              </div>
+              <div class="post-results"></div>
+            </div>
+        </li>
+        <li>
+            <div class="ui search" id="search_courses">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search courses...">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+        </li>
+
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="{% url 'Member:profile' %}" id="navbarProfileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{member.email}}  <span>&nbsp;</span><i class="fa fa-user"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarProfileDropdown">
+              <a class="dropdown-item" href="{% url 'Member:my_timeline'  %}">My Timeline</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'Member:profile'  %}">Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'Member:password_change'  %}">Change Password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'Member:logout'  %}">Logout</a>
+              <div class="dropdown-divider"></div>
+        </div>
+      </li>
+      </ul>
+      {% endif %}
+
+  </div>
+</nav>
+    <div class="mt-4">&nbsp;</div>
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/js/jsi18.js"></script>
+    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/js/course_search.js"></script>
+    <script type="text/javascript" src="/static/js/dropzone/dropzone.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/js/dropzone/dropzone.css"/>
+    <script type="text/javascript" src="/static/js/file_upload.js"></script>
+    <script type="text/javascript" src="/static/js/on_change.js"></script>
+
+
+
+    </body>
+
+
+</html>

@@ -1,0 +1,29 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4">
+            {% include 'Member/profile_card.html'%}
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {% if message %}<h3 class="text-danger text-center">{{message|safe}}</h3>{% endif %}
+                    <h4 class="card-title">Remove Student to Course</h4>
+                    <form method="post" action="{% url 'Member:remove_student' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {{ remove_student_form|crispy }}
+                        <button type="submit" class="btn btn-primary btn-block">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3">
+
+         </div>
+    </div>
+</div>
+{% endblock %}

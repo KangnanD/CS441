@@ -1,0 +1,29 @@
+content_type = ContentType.objects.get_for_model(Course)
+permission = Permission.objects.create(
+    codename='add_course',
+    name='Add Course',
+    content_type=content_type
+)
+student_group.permissions.add(permission)
+permission = Permission.objects.create(
+    codename='add_course',
+    name='Add Course',
+    content_type=content_type
+)
+student_group.permissions.add(permission)
+
+
+teacher_group = Group.objects.get_or_create(name='Teacher')
+content_type = ContentType.objects.get_for_model(Course)
+permission = Permission.objects.create(
+    codename='add_course',
+    name='Add Course',
+    content_type=content_type
+)
+student_group.permissions.add(permission)
+permission = Permission.objects.create(
+    codename='add_course',
+    name='Add Course',
+    content_type=content_type
+)
+student_group.permissions.add(permission)

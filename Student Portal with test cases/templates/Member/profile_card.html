@@ -1,0 +1,24 @@
+<profile>
+    <div class="panel rounded shadow border">
+    <div class="panel-body">
+        <div class="inner-all">
+            <ul class="list-unstyled ">
+                <li class="text-center">
+                    <img data-no-retina="" class="img-circle img-responsive img-bordered-primary mx-auto rounded-circle" src="{{ member.image.url }}" alt="{{member.user.name}}"  height="150px" width="150px">
+                </li>
+                <li class="text-center ">
+                    <h4 class="text-capitalize">{{member.user.username}}</h4>
+                    <p class="text-muted text-capitalize">{{member.user.email}}</p>
+                    <p class="text-muted text-capitalize">{{member.dob}}</p>
+                </li>
+                <li>
+                    <div class="btn-group-vertical btn-block">
+                        <a href="/profile" class="btn btn-default border"><i class="fa fa-cog pull-right"></i>Profile</a>
+                        <a href="/logout" class="btn btn-default border"><i class="fa fa-sign-out pull-right"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</profile>

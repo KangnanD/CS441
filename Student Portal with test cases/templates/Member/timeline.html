@@ -1,0 +1,76 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<div class="container-fluid mt-5" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-4">
+        {% include 'Member/profile_card.html'%}
+    </div>
+
+    <div class="col-md-9">
+        <div class="panel">
+            <div class="panel-content panel-activity">
+                <form method="post" enctype="multipart/form-data" class="panel-activity__status" action="{% url 'Member:post_to_timeline' course_id=course.id member_id=member.id %}">
+                     {% csrf_token %}
+                    <input type="hidden" name="member" id="id_member" value="{{member.id}}">
+                    <input type="hidden" name="course" id="id_course" value="{{course.id}}">
+                    <input name="title" id="id_title" placeholder="Title of the Post..." class="form-control" required/>
+                    <textarea name="content" id="id_content" placeholder="Share Post and upload related files..." class="form-control" rows="4" required></textarea>
+                    <div class="actions" >
+                        <div class="input-group">
+                            <div class="custom-file col-sm-3">
+                              <input type="file" class="custom-file-input" name="file" id="id_file" multiple>
+                              <label class="custom-file-label" for="id_file">Choose file</label>
+                            </div>
+                            <div class="custom-file col-sm-3">
+                            <select class="custom-select custom-select-sm" name="file_type" id="id_file_type" required>
+                              <option selected>File Type</option>
+                                {% for f in file_types %}
+                                  <option value="{{f.id}}">{{f.name}} : {{f.category}}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                            <div class="input-group col-sm-3 ">
+                                <button type="submit" class="btn btn-sm btn-rounded btn-primary btn-block">
+                                    Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <ul class="panel-activity__list">
+                    {% for p in posts %}
+                    <li>
+                        <i class="activity__list__icon fa fa-question-circle-o"></i>
+                        <div class="activity__list__header">
+                            <img src="{{p.member.image.url}}" alt="{{p.member.name}}" />
+                            <a href="#">{{p.member.email}}</a>
+                            <p>{{p.title}}</p>
+                        </div>
+                        <div class="activity__list__body entry-content">
+                            <p>
+                                {{p.content}}
+                            </p>
+                            {% if p.file %}
+                            <a href="{{p.file.url}}" class="fa fa-file"></a>
+                            {% endif %}
+                        </div>
+                        <div class="activity__list__footer">
+                            <a href="/like/post/{{p.id}}/"><i class="fa fa-thumbs-up"></i>{{p.likes.all.count}}</a>
+                            <a href="/dislike/post/{{p.id}}/"><i class="fa fa-thumbs-down"></i>{{p.dislikes.all.count}}</a>
+                          {% if p.member.id == member.id %}<a href="/delete/post/{{p.id}}/"><i class="fa fa-trash"></i></a>{% endif %}
+                              <span> <i class="fa fa-clock"></i>{{p.publish_date | naturaltime}}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+</div>
+{% endblock %}

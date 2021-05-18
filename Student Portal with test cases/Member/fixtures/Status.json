@@ -1,0 +1,47 @@
+[
+  {
+    "model": "Member.Status",
+    "pk": 1,
+    "fields": {
+      "name": "TODO",
+      "description": "TODO",
+      "tag": "TODO"
+    }
+  },
+  {
+    "model": "Member.Status",
+    "pk": 2,
+    "fields": {
+      "name": "IN PROGRESS",
+      "description": "IN_PROGRESS",
+      "tag": "IN_PROGRESS"
+    }
+  },
+  {
+    "model": "Member.Status",
+    "pk": 3,
+    "fields": {
+      "name": "WAITING",
+      "description": "WAITING",
+      "tag": "WAITING"
+    }
+  },
+  {
+    "model": "Member.Status",
+    "pk": 4,
+    "fields": {
+      "name": "BLOCKER",
+      "description": "BLOCKER",
+      "tag": "BLOCKER"
+    }
+  },
+  {
+    "model": "Member.Status",
+    "pk": 5,
+    "fields": {
+      "name": "DONE",
+      "description": "DONE",
+      "tag": "DONE"
+    }
+  }
+]

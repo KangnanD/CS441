@@ -1,0 +1,46 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4">
+            {% include 'Member/profile_card.html'%}
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Online Members</h4>
+            <table class="table table-striped table-bordered table-hover" style="max-height:500px;">
+              <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+               {% for m in online_members %}
+                <tr>
+                  <td>
+                        {{m.id}}
+                  </td>
+                  <td>
+                      <div class="sub header">{{m.first_name}}{{m.last_name}}</div>
+                  </td>
+                  <td>
+                    {{m.email}}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3">
+
+         </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+[
+  {
+    "model": "Member.Course",
+    "pk": 1,
+    "fields": {
+      "code" : "CSE001",
+      "name": "CSE001",
+      "description": "Course 1 for computer science semester 1",
+      "image": "courses/courses.png"
+    }
+  },
+  {
+    "model": "Member.Course",
+    "pk": 2,
+    "fields": {
+      "code" : "CSE002",
+      "name": "CSE002",
+      "description": "Course 2 for computer science semester 2",
+      "image": "courses/courses.png"
+    }
+  },  {
+    "model": "Member.Course",
+    "pk": 3,
+    "fields": {
+      "code" : "CSE003",
+      "name": "CSE003",
+      "description": "Course 3 for computer science semester 3",
+      "image": "courses/courses.png"
+    }
+  }
+,  {
+    "model": "Member.Course",
+    "pk": 4,
+    "fields": {
+      "code" : "CSE004",
+      "name": "CSE004",
+      "description": "Course 4 for computer science semester 4",
+      "image": "courses/courses.png"
+    }
+  }
+]

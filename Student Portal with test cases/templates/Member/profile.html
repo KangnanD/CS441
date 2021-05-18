@@ -1,0 +1,29 @@
+{% extends 'Member/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-4">
+        {% include 'Member/profile_card.html'%}
+    </div>
+
+    <div class="col-md-9">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Hello {{member.email}} ,  </h4>
+        <form method="post" enctype="multipart/form-data" action="{% url 'Member:profile' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {{ member_update_form|crispy }}
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}

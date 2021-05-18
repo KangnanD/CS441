@@ -1,0 +1,26 @@
+[
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "STUDENT",
+      "permissions": [
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "TEACHER_ASSISTANT",
+      "permissions": [
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "TEACHER",
+      "permissions": [
+      ]
+    }
+  }
+]

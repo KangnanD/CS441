@@ -1,0 +1,12 @@
+[
+  {
+    "model": "Member.Member",
+    "pk": 2,
+    "fields": {
+      "email":"admin_member@localhost.com",
+      "password":"hello_world",
+      "username":"admin_member",
+      "accept": "True"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{% extends "Member/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    {% if member.is_authenticated %}
+        <h2>Hello {{ member.email }}</h2>
+    {% else %}
+        <h2>Register or Login if you'd like to</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+[
+  {
+    "model": "Member.FileType",
+    "pk": 1,
+    "fields": {
+      "name": "PDF",
+      "description": "PDF Documents",
+      "category": "docs"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 2,
+    "fields": {
+      "name": "JPEG",
+      "description": "JPG Images",
+      "category": "image"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 3,
+    "fields": {
+      "name": "PNG",
+      "description": "PNG Images",
+      "category": "image"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 4,
+    "fields": {
+      "name": "DOCX",
+      "description": "Word Documents",
+      "category": "docs"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 5,
+    "fields": {
+      "name": "ZIP",
+      "description": "Archive ZIP",
+      "category": "zip"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 6,
+    "fields": {
+      "name": "7z",
+      "description": "Archive 7z",
+      "category": "zip"
+    }
+  },
+  {
+    "model": "Member.FileType",
+    "pk": 7,
+    "fields": {
+      "name": "rar",
+      "description": "Archive Rar",
+      "category": "zip"
+    }
+  }
+
+
+
+]
